@@ -10,4 +10,10 @@ public class NPC extends Player {
     public NPC(String name, String description, Scene currentScene) {
         super(name, description, currentScene);
     }
+
+    @Override
+    public boolean onInteration(Player player) {
+        System.out.println(getDescription());
+        return true;
+    }
 }
