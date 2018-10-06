@@ -56,12 +56,10 @@ public class Main {
             String line = scanner.nextLine();
             String[] token = line.trim().split("\\s+");
 
-            if(!mainPlayer.enter(token[0])&&!mainPlayer.go(token[0])){
-                if (!CmdResolver.apply(token)) {
-                    System.out.println("这是啥？");
-                    continue;
-                }
-            } else setUpdate();
+            if (!CmdResolver.apply(token)) {
+                System.out.println("这是啥..");
+                continue;
+            }
 
 
             if (shouldUpdate) {

@@ -1,5 +1,8 @@
 package game.engine.command;
 
+import game.base.Player;
+import game.engine.Main;
+
 import java.util.ArrayList;
 
 /**
@@ -13,6 +16,20 @@ public class CmdResolver {
     }
 
     public static boolean apply(String[] token) {
+
+        Player mainPlayer = Main.mainPlayer;
+        if (mainPlayer.enter(token[0])) {
+            Main.setUpdate();
+            return true;
+        }
+        if (mainPlayer.go(token[0])) {
+            Main.setUpdate();
+            return true;
+        }
+        if (mainPlayer.interact(token[0])) {
+            return true;
+        }
+
         for (Command command : commands) {
             if (command.match(token[0])) {
                 command.invoke(token);

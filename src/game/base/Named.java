@@ -64,11 +64,11 @@ public class Named {
         return null;
     }
 
-    public static <V extends Named> String getListInfo(List<V> list, String prefix, String postfix, String emptyInfo) {
+    public static <V extends Named> String getListInfo(List<V> list, String prefix,String infix, String postfix, String emptyInfo) {
         if(list.size()==0) return emptyInfo;
-        String result = prefix;
-        for (int i = 0; i < list.size(); i++) {
-            result += list.get(i).getName() + " ";
+        String result = prefix + list.get(0).getName();
+        for (int i = 1; i < list.size(); i++) {
+            result += infix + list.get(i).getName();
         }
         result += postfix;
         return result;

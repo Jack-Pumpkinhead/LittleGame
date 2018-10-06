@@ -13,7 +13,7 @@ public class CommandUpdate extends Command {
 
     @Override
     public boolean match(String name) {
-        return name.equals("F5");
+        return name.equals("F5")||name.equals("刷新");
     }
 
     @Override

@@ -30,19 +30,19 @@ public class Scene extends Named{
     }
 
     public String listAllStuffs() {
-        return getListInfo(stuffs, "一些东西：", "。", "什么也没有。");
+        return getListInfo(stuffs, "一些东西： 【", "】【", "】。", "什么也没有。");
     }
 
     public String listAllPlayers() {
-        return getListInfo(players, "一些人：", "。", "一个人都没有。");
+        return getListInfo(players, "一些人：【", "】【", "】。", "一个人都没有。");
     }
 
     public String listAllSubScenes() {
-        return getListInfo(subScenes, "小地方：", "。", "没什么好看的");
+        return getListInfo(subScenes, "小地方：【", "】【", "】。", "没什么好看的。");
     }
 
     public String listAllNearbyScenes() {
-        return getListInfo(nearbyScenes, "隔壁：", "。", "无路可走");
+        return getListInfo(nearbyScenes, "隔壁：【", "】【", "】。", "无路可走。");
     }
 
 
@@ -101,6 +101,12 @@ public class Scene extends Named{
         }
     }
 
+    public boolean interact(Player player,String name) {
+        Player lookup = lookup(name, players);
+        if(lookup==null) return false;
+        lookup.onInteraction(player);
+        return true;
+    }
 
     private ArrayList<Command> extraCommand = new ArrayList<>();
     public ArrayList<Command> getExtraCommand() {

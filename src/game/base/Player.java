@@ -36,14 +36,14 @@ public class Player extends Named {
     }
 
     public Player(String name, String description, Scene currentScene) {
-        super(name, description);
+        super(name, description,"天气不错");
         this.currentScene = currentScene;
         currentScene.getPlayers().add(this);
     }
 
     public void printInformation() {
         System.out.println(currentScene.getConcreteDescription());
-        System.out.println(this.getDescription());
+        System.out.println(this.getConcreteDescription());
     }
 
     public String getHeader() {
@@ -53,6 +53,7 @@ public class Player extends Named {
     public String getConcreteDescription() {
         String description = getHeader();
         description += "\n" + "手上拿着" + onHand.description;
+        description += "\n" + concreteDescription;
         return description;
     }
 
@@ -66,7 +67,11 @@ public class Player extends Named {
         return setCurrentScene(currentScene.go(this, name));
     }
 
-    public boolean onInteration(Player player) {
-        return false;
+    public boolean interact(String name) {
+        return currentScene.interact(this, name);
+    }
+
+    public void onInteraction(Player player) {
+        System.out.println(getConcreteDescription());
     }
 }
