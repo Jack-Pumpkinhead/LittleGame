@@ -58,17 +58,29 @@ public class Main {
 
             if (shouldUpdate) {
                 shouldUpdate = false;
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 15; i++) {
                     System.out.println();
                 }
                 mainPlayer.printInformation();
             }
 
         }
-        System.out.println("溜了.......................................");
+        delayPrint("溜了.......................................");
     }
 
     public static String[] nextToken() {
         return scanner.nextLine().trim().split("\\s+");
+    }
+
+    public static void delayPrint(String s){
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            System.out.print(chars[i]);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

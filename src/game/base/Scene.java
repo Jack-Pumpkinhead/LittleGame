@@ -15,15 +15,15 @@ public class Scene extends Named{
     }
 
     public String getHeader() {
-        return "----------------" + getName() + "---------------------";
+        String header = parentScene != null ? parentScene.getHeader(): "";
+        header += "\n" + "----------------" + getName() + "---------------------";
+        return header;
     }
 
     String concreteDescription;
     @Override
     public String getConcreteDescription() {
-
-        String description = parentScene != null ? parentScene.getHeader(): "";
-        description += "\n" + getHeader();
+        String description = getHeader() + (parentScene != null ? "【返回】" : "");
         description += "\n" + getDescription();
         description += "\n" + listAllStuffs();
         description += "\n" + listAllPlayers();

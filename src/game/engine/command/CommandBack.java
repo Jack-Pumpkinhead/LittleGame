@@ -19,10 +19,10 @@ public class CommandBack extends Command {
     @Override
     public void invoke(String[] token) {
         if (Main.mainPlayer.back()) {
-            CmdResolver.delayPrint("回到" + Main.mainPlayer.getCurrentScene().getName() + "......");
+            Main.delayPrint("回到" + Main.mainPlayer.getCurrentScene().getName() + "......");
             Main.setUpdate();
         } else {
-            CmdResolver.delayPrint("无路可走......");
+            Main.delayPrint("无路可走......");
             Main.setUpdate();
         }
     }
