@@ -17,8 +17,11 @@ public class Scene extends Named{
     public String getHeader() {
         return "----------------" + getName() + "---------------------";
     }
+
+    String concreteDescription;
     @Override
     public String getConcreteDescription() {
+
         String description = parentScene != null ? parentScene.getHeader(): "";
         description += "\n" + getHeader();
         description += "\n" + getDescription();
@@ -69,6 +72,10 @@ public class Scene extends Named{
     }
 
 
+    public void addStuff(Stuff stuff) {
+        stuffs.add(stuff);
+    }
+
     public void addSubScene(Scene scene) {
         scene.parentScene = this;
         subScenes.add(scene);
@@ -103,9 +110,16 @@ public class Scene extends Named{
 
     public boolean interact(Player player,String name) {
         Player lookup = lookup(name, players);
-        if(lookup==null) return false;
-        lookup.onInteraction(player);
-        return true;
+        if (lookup != null) {
+            lookup.onInteraction(player);
+            return true;
+        }
+        Stuff stuff = lookup(name, stuffs);
+        if (stuff != null) {
+            stuff.onInteraction(player);
+            return true;
+        }
+        return false;
     }
 
     private ArrayList<Command> extraCommand = new ArrayList<>();

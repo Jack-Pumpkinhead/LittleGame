@@ -1,7 +1,6 @@
 package game.engine;
 
 import game.base.Player;
-import game.base.Scene;
 import game.engine.command.CmdResolver;
 import game.struct.Home;
 
@@ -11,11 +10,12 @@ import java.util.Scanner;
  * Created by CowardlyLion on 2018/10/3 13:14
  */
 public class Main {
+    public static final Scanner scanner = new Scanner(System.in);
     private static boolean running = true;
-    private static boolean shouldUpdate = false;
     public static void stop() {
         running = false;
     }
+    private static boolean shouldUpdate = false;
     public static void setUpdate() {
         shouldUpdate = true;
     }
@@ -24,9 +24,8 @@ public class Main {
     public static final Player mainPlayer = new Player(null, "A simple player.", home);
 
     public static void main(String[] args) {
-        Scene main = new Scene("Oz", "The land of everything.");
-        Player Steve = new Player("Steve", "A player called \"Steve\"", main);
-        Scanner scanner = new Scanner(System.in);
+//        Scene main = new Scene("Oz", "The land of everything.");
+//        Player Steve = new Player("Steve", "A player called \"Steve\"", main);
 
         Loader.init();
         CmdResolver.init();
@@ -35,13 +34,11 @@ public class Main {
 //        System.out.println("Input your name: ");
         System.out.println("开始游戏...");
         System.out.print("输入你的名字：");
-        String name = scanner.nextLine();
-        String[] names = name.trim().split("\\s+");
 
+        String[] names = nextToken();
         while (names[0].equals("")) {
             System.out.print("名字不能为空：");
-            name = scanner.nextLine();
-            names = name.trim().split("\\s+");
+            names = nextToken();
         }
 
         mainPlayer.setName(names[0]);
@@ -53,23 +50,25 @@ public class Main {
         mainPlayer.printInformation();
 
         while (running) {
-            String line = scanner.nextLine();
-            String[] token = line.trim().split("\\s+");
 
-            if (!CmdResolver.apply(token)) {
-                System.out.println("这是啥..");
+            if (!CmdResolver.apply(nextToken())) {
+                System.out.println("Unknown command. Type \"help\" for help.");
                 continue;
             }
 
-
             if (shouldUpdate) {
+                shouldUpdate = false;
                 for (int i = 0; i < 3; i++) {
                     System.out.println();
                 }
                 mainPlayer.printInformation();
-                shouldUpdate = false;
             }
 
         }
+        System.out.println("溜了.......................................");
+    }
+
+    public static String[] nextToken() {
+        return scanner.nextLine().trim().split("\\s+");
     }
 }

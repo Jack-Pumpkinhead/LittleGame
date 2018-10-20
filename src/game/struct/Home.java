@@ -8,7 +8,7 @@ import game.base.Scene;
  */
 public class Home extends Scene {
     public Home() {
-        super("home", "空空的，什么都没有。");
+        super("home", "空空的。");
     }
     Player owner;
     public Player getOwner() {

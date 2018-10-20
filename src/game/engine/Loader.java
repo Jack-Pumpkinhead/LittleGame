@@ -23,9 +23,23 @@ public class Loader {
         Main.home.addNearbyScene(mountain);
         mountain.addSubScene(temple);
 
-        Stuff health = new Stuff("血量条", "无穷的血量条");
+        Stuff health = new Stuff("无穷的血量条", "无穷的血量条");
         elderMonk.addStuff(health);
         elderMonk.setOnHand(health);
+
+        Stuff book = new Stuff("《傅立叶分析导论》", "没学过");
+        littleMonk.addStuff(book);
+        littleMonk.setOnHand(book);
+
+        Stuff oak = new Stuff("橡树", "很像一棵树");
+        Stuff grass = new Stuff("高草丛", "不够高");
+        mountain.addStuff(oak);
+        mountain.addStuff(grass);
+
+        Scene forest = new Scene("草原", "亚热带稀疏草原");
+        Stuff wood = new Stuff("枯木枝", "没有任何水分");
+        forest.addStuff(wood);
+        mountain.addNearbyScene(forest);
 
     }
 }

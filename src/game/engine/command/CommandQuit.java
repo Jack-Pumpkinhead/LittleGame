@@ -13,7 +13,7 @@ public class CommandQuit extends Command {
 
     @Override
     public boolean match(String name) {
-        return name.equals("溜了");
+        return name.equals("溜了") || name.equals("stop") || name.equals("quit") || name.equals("exit");
     }
 
     @Override

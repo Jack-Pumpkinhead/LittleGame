@@ -12,7 +12,7 @@ public class CommandHelp extends Command {
 
     @Override
     public boolean match(String name) {
-        return name.equals("帮助") || name.equals("?");
+        return name.equals("help") || name.equals("帮助") || name.equals("?");
     }
 
     @Override

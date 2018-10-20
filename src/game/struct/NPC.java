@@ -11,4 +11,8 @@ public class NPC extends Player {
         super(name, description, currentScene);
     }
 
+    @Override
+    public void onInteraction(Player player) {
+        System.out.println(getConcreteDescription());
+    }
 }

@@ -52,8 +52,8 @@ public class Player extends Named {
     @Override
     public String getConcreteDescription() {
         String description = getHeader();
-        description += "\n" + "手上拿着" + onHand.description;
-        description += "\n" + concreteDescription;
+        description += "\n" + "手上拿着" + onHand.name;
+        description += "\n" + name + ": " + concreteDescription;
         return description;
     }
 
